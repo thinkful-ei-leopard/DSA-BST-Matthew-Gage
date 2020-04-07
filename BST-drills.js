@@ -20,21 +20,35 @@ function isBST(tree) {
   return true;
 }
 
+//if !tree.parent.left tree.parent.parent
+//else tree.parent.left
+function thirdLargest(tree) {
+  let largest = tree.right;
+  while(largest.right) {
+    largest = largest.right;
+  }
+  if(!largest.parent.left) {
+    return largest.parent.parent;
+  } else {
+    largest = largest.parent.left;
+    while(largest.right) {
+      largest = largest.right;
+    }
+    return largest;
+  }
+}
+
 function main() {
   let bst = new BST;
-  bst.insert('E');
-  bst.insert('A');
-  bst.insert('S');
-  bst.insert('Y');
-  bst.insert('Q');
-  bst.insert('U');
-  bst.insert('E');
-  bst.insert('S');
-  bst.insert('T');
-  bst.insert('I');
-  bst.insert('O');
-  bst.insert('N');
-  return isBST(bst);
+  bst.insert(3);
+  bst.insert(6);
+  bst.insert(4);
+  bst.insert(5);
+  bst.insert(7);
+  bst.insert(1);
+  bst.insert(0);
+  bst.insert(2);
+  return thirdLargest(bst).key;
 }
 
 console.log(main());
