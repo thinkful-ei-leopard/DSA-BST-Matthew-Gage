@@ -1,5 +1,12 @@
 const BST = require('./BinarySearchTree');
 
+function treeHeight(tree) {
+  if (!tree) {
+    return 0;
+  }
+  return 1 + Math.max(treeHeight(tree.left), treeHeight(tree.right));
+}
+
 function main() {
   let bst = new BST;
   bst.insert('E');
@@ -14,7 +21,7 @@ function main() {
   bst.insert('I');
   bst.insert('O');
   bst.insert('N');
-  return bst;
+  return treeHeight(bst);
 }
 
 console.log(main());
